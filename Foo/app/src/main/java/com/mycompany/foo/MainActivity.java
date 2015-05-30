@@ -1,4 +1,5 @@
 package com.mycompany.foo;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-
+//help from http://stackoverflow.com/questions/2201917/how-can-i-open-a-url-in-androids-web-browser-from-my-application
 public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.mycompany.foo.MESSAGE";
 
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
     /** Called when the user clicks the Send button */
     public void sendMessage(View view) {
         // Do something in response to button
@@ -52,4 +53,18 @@ public class MainActivity extends AppCompatActivity {
         // EditText editText = (EditText) findViewById(R.id.edit_message);
 
     }
+
+    public void getPDF1(View view) {
+        // Do something in response to button
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://site.republicservices.com/site/corvallis-or/en/documents/corvallisrecycledepot.pdf"));
+        startActivity(browserIntent);
+    }
+
+    public void getPDF2(View view) {
+        // Do something in response to button
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://site.republicservices.com/site/corvallis-or/en/documents/detailedrecyclingguide.pdf"));
+        startActivity(browserIntent);
+    }
+
+
 }
