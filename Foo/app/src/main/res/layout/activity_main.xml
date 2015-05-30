@@ -1,0 +1,59 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#5cb85c"
+    android:gravity="center|center_vertical"
+    tools:context="com.mycompany.foo.MainActivity">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/ic_launcher_cs419"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="96dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/message"
+        android:background="#5cb85c"
+        android:id="@+id/message"
+        android:textSize="35sp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/resellrepair"
+        android:id="@+id/resellbuy"
+        android:layout_gravity="center"
+        android:textColor="#FFFFFF"
+        android:background="#5CB85C"
+        android:onClick="sendMessage"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/repair"
+        android:id="@+id/repair"
+        android:layout_gravity="center"
+        android:textColor="#FFFFFF"
+        android:background="#5CB85C"
+        android:onClick="sendMessage"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/explore"
+        android:id="@+id/explore"
+        android:layout_gravity="center"
+        android:textColor="#FFFFFF"
+        android:background="#5CB85C"
+        android:onClick="sendMessage"/>
+
+</LinearLayout>
