@@ -134,13 +134,8 @@ else
         }
       
         $json_string = $json_string . "<tr><td>" . $i++ . "</td><td>" . $name 
-<<<<<<< HEAD
             . "</td><td>"; 
-=======
-            . "</td><td>" . $street . " " . $city . $st . " " . $zip 
-            . "</td><td>" . $phone . "</td><td>" . $website . "</td><td>" 
-            . $info . "</td><td>"; 
->>>>>>> 0ca8d022b3e829104b2b96523306db356c4fab11
+
         
         if ( ! ($stmt2 = $mysqli2->prepare("SELECT cat.name, cont.name 
                                             FROM contents cont 
@@ -215,18 +210,11 @@ else
         }
 
 
-<<<<<<< HEAD
         $json_string = $json_string . "</td><td><a href=\\\"" 
             . "viewBusiness.php?id=" . $id . "\\\" class=\\\"btn btn-link"
             . "\\\">Business Info</a><a href=\\\"editBusiness.php?id=" . $id 
             . "\\\" class=\\\"btn btn-link\\\">Edit</a><button type=\\\""
             . "button\\\" class=\\\"btn btn-link\\\" data-toggle=\\\"modal\\\" "
-=======
-        $json_string = $json_string . "</td><td><a href= <?php echo" 
-            . " \\\"editBusiness.php?id=" . $id . "\\\" class=\\\"btn "
-            . "btn-link\\\">Edit</a><button type=\\\"button\\\" "
-            . "class=\\\"btn btn-link\\\" data-toggle=\\\"modal\\\" "
->>>>>>> 0ca8d022b3e829104b2b96523306db356c4fab11
             . "data-target=\\\"#bus-delete-warning\\\" data-name=\\\"" 
             . $name . "\\\" data-id=\\\"" . $id 
             . "\\\">Delete</button></td></tr>";
