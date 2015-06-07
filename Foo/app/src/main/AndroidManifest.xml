@@ -49,6 +49,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mycompany.foo.MainActivity" />
         </activity>
+        <activity
+            android:name=".CategoriesActivity"
+            android:label="CategoriesActivity" >
+        </activity>
+        <activity
+            android:name=".ItemsActivity"
+            android:label="ItemsActivity" >
+        </activity>
     </application>
 
 </manifest>

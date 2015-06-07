@@ -93,7 +93,7 @@
         android:layout_gravity="center"
         android:textColor="#FFFFFF"
         android:background="#41a041"
-        android:onClick="sendMessage"
+        android:onClick="getCategoriesHandler"
         android:layout_below="@+id/repair"
         android:layout_alignLeft="@+id/repair"
         android:layout_alignStart="@+id/repair" />
@@ -107,7 +107,7 @@
         android:layout_gravity="center"
         android:textColor="#FFFFFF"
         android:background="#41a041"
-        android:onClick="sendMessage"
+        android:onClick="getCategoriesHandler"
         android:layout_below="@+id/explore"
         android:layout_alignLeft="@+id/explore"
         android:layout_alignStart="@+id/explore" />
@@ -120,7 +120,7 @@
         android:layout_gravity="center"
         android:textColor="#FFFFFF"
         android:background="#41a041"
-        android:onClick="sendMessage"
+        android:onClick="getCategoriesHandler"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
