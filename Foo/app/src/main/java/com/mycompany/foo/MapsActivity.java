@@ -70,6 +70,13 @@ public class MapsActivity extends FragmentActivity {
         }
     }
 
+    /* This is the code that will be ran when we are marking a business
+        location on the map. the function takes a string as an input,
+        which is the address. We can also expand to have the function
+        take more inputs so we can add a brief description at the top
+        of the marker and display even more when the user clicks on
+        the marker.
+     */
 
 
     public void gotoLocation(double lat,double lng,float zoom){
