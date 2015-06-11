@@ -123,39 +123,7 @@ public class MapsActivity extends FragmentActivity {
      */
 
     public ArrayList<HashMap<String, String>> getAddresses( Intent intent){
-        intent = getIntent();
-        message = intent.getStringExtra(ItemsActivity.BUSINESS_MESSAGE);
 
-        busList = new ArrayList<HashMap<String, String>>();
-
-        if(message != null) {
-            try {
-
-                JSONObject jsonObj = new JSONObject(message);
-                // Getting JSON Array node
-                businesses = jsonObj.getJSONArray("businesses");
-
-                // looping through All categories
-                for (int i = 0; i < businesses.length(); i++) {
-                    JSONObject bus = businesses.getJSONObject(i);
-
-                    String name = bus.getString("name");
-                    String address = bus.getString("address");
-
-                    // tmp hashmap for single contact
-                    HashMap<String, String> business = new HashMap<String, String>();
-
-                    // adding each child node to HashMap key => value
-                    business.put("name", name);
-                    business.put("address", address);
-
-                    // adding art to artwork list
-                    busList.add(business);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
 
         return busList;
     }
