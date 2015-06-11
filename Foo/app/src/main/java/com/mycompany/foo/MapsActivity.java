@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MapsActivity extends FragmentActivity {
     private BusinessActivity bs;
@@ -167,16 +168,22 @@ public class MapsActivity extends FragmentActivity {
 
 
     private void setUpMap() throws IOException {
-        ArrayList<String> address = new ArrayList<String>();
-        address.add("97734");
-        address.add("Corvallis, OR 97331");
-        address.add("Eugene, OR");
-        mMap.setMyLocationEnabled(true);
-        for(String s : address){
-            getLocate(s);
+        ArrayList<HashMap<String, String>> address ;
+        String value;
+        address = getAddresses();
 
+        if (address.size()<0){
+            mMap.setMyLocationEnabled(true);
+            for(int i = 0;i< address.size(); i++) {
+                value = address.get(i).get("address");
+                getLocate(value);
+            }
+        }else{
+                mMap.setMyLocationEnabled(true);
+                getLocate("97734");
         }
+
+
+    }
         //mMap.addMarker(new MarkerOptions().position(new LatLng(44.5646, 123.2757)).title("Marker"));
     }
-
-}
