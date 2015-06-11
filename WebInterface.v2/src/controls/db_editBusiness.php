@@ -166,7 +166,7 @@ else
     }             
 
     //Bind variables
-    if ( ! ($stmt->bind_param("sssssssii", $name, $info, $phone, $website, 
+    if ( ! ($stmt->bind_param("sssssssisi", $name, $info, $phone, $website, 
             $street, $city, $state, $zip, $hours, $id)))
     {
         echo "<p>Binding parameters failed: (" . $stmt->errno . ") " 

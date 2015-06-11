@@ -71,7 +71,7 @@ if(isset($_GET['id']) && (count($_GET) == 1)) {
 
 
     //Prepare a statement
-    if(!($stmt = $mysqli->prepare("SELECT com.id, com.name, com.info, com.phone, com.website, com.street, com.city, com.st, com.zip, cc.reuse, cc.repair 
+    if(!($stmt = $mysqli->prepare("SELECT com.id, com.name, com.info, com.phone, com.website, com.street, com.city, com.st, com.zip, com.hours, cc.reuse, cc.repair 
                                     FROM companies com 
                                     INNER JOIN company_content cc 
                                     ON cc.company_id = com.id
@@ -99,10 +99,11 @@ if(isset($_GET['id']) && (count($_GET) == 1)) {
     $city;
     $state;
     $zip;
+    $hours;
     $reuse;
     $repair;
 
-    if(!($stmt->bind_result($bus_id, $bus_name, $info, $phone, $website, $street, $city, $state, $zip, $reuse, $repair))) {
+    if(!($stmt->bind_result($bus_id, $bus_name, $info, $phone, $website, $street, $city, $state, $zip, $hours, $reuse, $repair))) {
         echo "<p>Binding output parameters failed: (" . $stmt->errno . ") " . $stmt->error;
     }
 
@@ -123,7 +124,7 @@ if(isset($_GET['id']) && (count($_GET) == 1)) {
             
 
             $json_string = $json_string . "{\"id\": \"" . $bus_id ."\", \"name\": \"" . $bus_name . "\", \"address\": \"" . $street . " " . $city . $state . " " . $zip 
-                . "\", \"phone\": \"" . $phone . "\", \"website\": \"" . $website . "\", \"info\": \"" . $info . "\", \"application\": {\"reuse\": \"" . $reuse . "\", \"repair\": \"" . $repair . "\"}}, ";   
+                . "\", \"hours\": \"" . $hours . "\", \"phone\": \"" . $phone . "\", \"website\": \"" . $website . "\", \"info\": \"" . $info . "\", \"application\": {\"reuse\": \"" . $reuse . "\", \"repair\": \"" . $repair . "\"}}, ";   
         }
     }
 

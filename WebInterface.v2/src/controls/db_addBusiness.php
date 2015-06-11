@@ -155,14 +155,14 @@ else
 
     //Prepare a statement
     if ( ! ($stmt = $mysqli->prepare("INSERT INTO companies 
-                            (name, info, phone, website, street, city, st, zip, open) 
+                            (name, info, phone, website, street, city, st, zip, hours) 
                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")))
     {
         echo "<p>Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
     }             
 
     //Bind variables
-    if ( ! ($stmt->bind_param("sssssssi", $name, $info, $phone, $website, 
+    if ( ! ($stmt->bind_param("sssssssis", $name, $info, $phone, $website, 
             $street, $city, $state, $zip, $hours)))
     {
         echo "<p>Binding parameters failed: (" . $stmt->errno . ") " 
@@ -184,6 +184,8 @@ else
     {
         echo "<p>Close failed: (" . $stmt->errno . ") " . $stmt->error;
     }
+
+
 
 
     //get new id

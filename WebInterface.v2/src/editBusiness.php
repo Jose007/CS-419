@@ -723,8 +723,8 @@ else {
 
     <?php       if($hours !== "") {?>
                     <input type="text" class="form-control" id="bus-hours" placeholder="Hours Open" value=<?php echo "\"" . $hours . "\""?>>
-              }
-    else {?> 
+    <?php        }
+                else {?> 
                     <input type="text" class="form-control" id="bus-hours" placeholder="Hours Open">
       <?php     }?> 
 

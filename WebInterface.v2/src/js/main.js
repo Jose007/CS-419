@@ -131,7 +131,36 @@ $('.items-grouping').change(function() {
 
 
 
+//OTHER
+//http://stackoverflow.com/questions/29203312/how-can-i-retain-the-scroll-
+//    position-of-a-scrollable-area-when-pressing-back-but
+$(function() {
+   $(window).unload(function() {
+    var scrollposition;
+    var i = 0;
+        $('.scroll-box').each(function(){
+            scrollposition = $(this).scrollTop();
+            localStorage.setItem("scrollposition" + i, scrollposition);
+            i++;
+        })
+    });
 
+    $(window).load(function() {
+        var i = 0;
+        $('.scroll-box').each(function(){
+            if(localStorage.scrollposition0 && i == 0) {
+                $(this).scrollTop(localStorage.getItem("scrollposition0"));
+            }
+            if(localStorage.scrollposition1 && i == 1) {
+                $(this).scrollTop(localStorage.getItem("scrollpposition1"));
+            }
+            if(localStorage.scrollposition2 && i == 2) {
+                $(this).scrollTop(localStorage.getItem("scrollposition2"));
+            }
+            i++;
+        })
+    })
+});
 
 
 
