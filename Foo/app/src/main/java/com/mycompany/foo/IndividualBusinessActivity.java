@@ -27,6 +27,7 @@ public class IndividualBusinessActivity extends Activity {
     TextView infotxt;
     TextView rrtxt;
     String website;
+    public final static String EXTRA_MESSAGE = "com.mycompany.foo.MESSAGE";
 
     Context cntxt = this;
     JSONArray businesses = null;
@@ -82,5 +83,14 @@ public class IndividualBusinessActivity extends Activity {
         // Do something in response to button
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(website));
         startActivity(browserIntent);
+    }
+    /** Called when the user clicks the Send button */
+    public void sendMessage(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, MapsActivity.class);
+        TextView editText = (TextView) findViewById(R.id.textView7);
+        String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
     }
 }

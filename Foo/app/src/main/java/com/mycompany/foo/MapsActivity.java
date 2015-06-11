@@ -170,11 +170,19 @@ public class MapsActivity extends FragmentActivity {
     private void setUpMap() throws IOException {
         ArrayList<HashMap<String, String>> address ;
         String value;
-        address = getAddresses();
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(IndividualBusinessActivity.EXTRA_MESSAGE);
+        if(message.length()>0){
+            getLocate(message);
+        }else{
+            getLocate("97734");
+        }
+
+/*       address = getAddresses();
 
         if (address.size()>0){
             mMap.setMyLocationEnabled(true);
-            for(int i = 0;i< address.size(); i++) {
+            for(int i = 0;i< address.size()-75; i++) {
                 value = address.get(i).get("address");
                 getLocate(value);
             }
@@ -182,7 +190,7 @@ public class MapsActivity extends FragmentActivity {
                 mMap.setMyLocationEnabled(true);
                 getLocate("97333");
         }
-
+*/
 
     }
         //mMap.addMarker(new MarkerOptions().position(new LatLng(44.5646, 123.2757)).title("Marker"));
