@@ -46,18 +46,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Gets the URL from the UI's text field.
-        String stringUrl = "http://web.engr.oregonstate.edu/~holmesmo/SeniorProject/WebAPI/addresses.php";
-        ConnectivityManager connMgr = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
-            //This is the AsyncTask
-            new getAddressesTask().execute(stringUrl);
-        } else {
-            //getTextResponse.setText("No network connection available.");
-        }
     }
 
     // Uses AsyncTask to create a task away from the main UI thread. This task takes a
@@ -85,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("addressesJSON", result);
             editor.commit();
+
+
+            Intent mapIntent = new Intent(cntxt, MapsActivity.class);
+            startActivity(mapIntent);
         }
     }
 
@@ -144,11 +136,19 @@ public class MainActivity extends AppCompatActivity {
         //   if (id == R.id.action_settings) {
         //        return true;
         //    }
-        switch (item.getItemId()){
-            case R.id.map:
-                Intent mapIntent = new Intent(this, MapsActivity.class);
-                startActivity(mapIntent);
-                return  true;
+        if (item.getItemId() == R.id.map){
+
+            // Gets the URL from the UI's text field.
+            String stringUrl = "http://web.engr.oregonstate.edu/~holmesmo/SeniorProject/WebAPI/addresses.php";
+            ConnectivityManager connMgr = (ConnectivityManager)
+                    getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+            if (networkInfo != null && networkInfo.isConnected()) {
+                //This is the AsyncTask
+                new getAddressesTask().execute(stringUrl);
+            } else {
+                //getTextResponse.setText("No network connection available.");
+            }
         }
         return super.onOptionsItemSelected(item);
     }

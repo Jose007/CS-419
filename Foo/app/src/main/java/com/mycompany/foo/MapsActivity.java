@@ -172,7 +172,7 @@ public class MapsActivity extends FragmentActivity {
         String value;
         address = getAddresses();
 
-        if (address.size()<0){
+        if (address.size()>0){
             mMap.setMyLocationEnabled(true);
             for(int i = 0;i< address.size(); i++) {
                 value = address.get(i).get("address");

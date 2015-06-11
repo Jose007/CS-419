@@ -69,7 +69,7 @@ while($stmt->fetch()) {
     }
     
 
-    $json_string = $json_string . "{\"id\": \"" . $bus_id ."\", \"name\": \"" . $bus_name . "\", \"address\": \"" . $street . " " . $city . $state . " " . $zip . "\"}}, ";   
+    $json_string = $json_string . "{\"id\": \"" . $bus_id ."\", \"name\": \"" . $bus_name . "\", \"address\": \"" . $street . " " . $city . $state . " " . $zip . "\"}, ";   
 }
 
 
