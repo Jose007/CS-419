@@ -2,6 +2,7 @@
 -- version 4.4.3
 -- http://www.phpmyadmin.net
 --
+--
 -- Host: mysql.eecs.oregonstate.edu
 -- Generation Time: Jun 10, 2015 at 05:00 PM
 -- Server version: 5.5.37-MariaDB-wsrep
