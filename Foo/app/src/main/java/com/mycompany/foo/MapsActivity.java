@@ -1,6 +1,8 @@
 package com.mycompany.foo;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v4.app.FragmentActivity;
@@ -28,15 +30,20 @@ public class MapsActivity extends FragmentActivity {
     private BusinessActivity bs;
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private static final float DEFAULTZOOM = 15;
-    JSONArray businesses = null;
-    String message;
+    String addresssesJSON;
+    JSONArray addresses = null;
 
     // Hashmap for ListView
-    ArrayList<HashMap<String, String>> busList;
+    ArrayList<HashMap<String, String>> addressesList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        SharedPreferences sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        addresssesJSON = sharedPref.getString("addressesJSON", "");
+
         try {
             setUpMapIfNeeded();
         } catch (IOException e) {
@@ -122,10 +129,40 @@ public class MapsActivity extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
 
-    public ArrayList<HashMap<String, String>> getAddresses( Intent intent){
+    public ArrayList<HashMap<String, String>> getAddresses( ){
 
+        addressesList = new ArrayList<HashMap<String, String>>();
 
-        return busList;
+        if (addresssesJSON != null) {
+            try {
+
+                JSONObject jsonObj = new JSONObject(addresssesJSON);
+                // Getting JSON Array node
+                addresses = jsonObj.getJSONArray("categories");
+
+                // looping through All categories
+                for (int i = 0; i < addresses.length(); i++) {
+                    JSONObject addr = addresses.getJSONObject(i);
+
+                    String id = addr.getString("id");
+                    String name = addr.getString("name");
+
+                    // tmp hashmap for single contact
+                    HashMap<String, String> addressMap = new HashMap<String, String>();
+
+                    // adding each child node to HashMap key => value
+                    addressMap.put("id", id);
+                    addressMap.put("name", name);
+
+                    // adding art to artwork list
+                    addressesList.add(addressMap);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return addressesList;
     }
 
 
