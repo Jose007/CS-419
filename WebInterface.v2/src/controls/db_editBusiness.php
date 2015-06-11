@@ -109,6 +109,15 @@ else
     {
         $info = "";
     }
+
+    if (strlen(trim($_POST['hours'])) !== 0) 
+    {
+        $hours = htmlspecialchars($_POST['hours'], ENT_QUOTES); 
+    } 
+    else 
+    {
+        $hours = "";
+    }
     
     if (isset($_POST['items'])) 
     {
@@ -150,7 +159,7 @@ else
     //Prepare a statement
     if ( ! ($stmt = $mysqli->prepare("UPDATE companies 
                                         SET name=?, info=?, phone=?, website=?, 
-                                            street=?, city=?, st=?, zip=? 
+                                            street=?, city=?, st=?, zip=?, hours=? 
                                         WHERE id=?")))
     {
         echo "<p>Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
@@ -158,7 +167,7 @@ else
 
     //Bind variables
     if ( ! ($stmt->bind_param("sssssssii", $name, $info, $phone, $website, 
-            $street, $city, $state, $zip, $id)))
+            $street, $city, $state, $zip, $hours, $id)))
     {
         echo "<p>Binding parameters failed: (" . $stmt->errno . ") " 
             . $stmt->error;

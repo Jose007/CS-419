@@ -110,6 +110,15 @@ else
     {
         $info = "";
     }
+
+    if (strlen(trim($_POST['hours'])) !== 0) 
+    {
+        $hours = htmlspecialchars($_POST['hours'], ENT_QUOTES); 
+    } 
+    else 
+    {
+        $hours = "";
+    }
     
     if (isset($_POST['items'])) 
     {
@@ -146,15 +155,15 @@ else
 
     //Prepare a statement
     if ( ! ($stmt = $mysqli->prepare("INSERT INTO companies 
-                            (name, info, phone, website, street, city, st, zip) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)")))
+                            (name, info, phone, website, street, city, st, zip, open) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")))
     {
         echo "<p>Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
     }             
 
     //Bind variables
     if ( ! ($stmt->bind_param("sssssssi", $name, $info, $phone, $website, 
-            $street, $city, $state, $zip)))
+            $street, $city, $state, $zip, $hours)))
     {
         echo "<p>Binding parameters failed: (" . $stmt->errno . ") " 
             . $stmt->error;

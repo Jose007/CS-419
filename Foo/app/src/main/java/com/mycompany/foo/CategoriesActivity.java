@@ -164,8 +164,9 @@ public class CategoriesActivity extends ListActivity {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
+            String newresult = specialCharCheck(result);
             Intent intent = new Intent(cntxt, ItemsActivity.class);
-            intent.putExtra(ITEMS_MESSAGE, result);
+            intent.putExtra(ITEMS_MESSAGE, newresult);
             startActivity(intent);
         }
     }
@@ -211,4 +212,29 @@ public class CategoriesActivity extends ListActivity {
         return new String(buffer);
     }
 
+    public String specialCharCheck(String string){
+        string = string.replaceAll("&#039;", "'");
+        string = string.replaceAll("&amp;", "&");
+        string = string.replaceAll("&lt;", "<");
+        string = string.replaceAll("&gt;", ">");
+        string = string.replaceAll("&quot", "\"");
+        string = string.replaceAll("&#033;", "!");
+        string = string.replaceAll("&#035;", "#");
+        string = string.replaceAll("&#036;", "$");
+        string = string.replaceAll("&#037;", "%");
+        string = string.replaceAll("#40;", "(");
+        string = string.replaceAll("#41;", ")");
+        string = string.replaceAll("#042", "*");
+        string = string.replaceAll("#043;", "+");
+        string = string.replaceAll("#044", ",");
+        string = string.replaceAll("#045", "-");
+        string = string.replaceAll("#046;", ".");
+        string = string.replaceAll("#047;", "/");
+        string = string.replaceAll("#058;", ":");
+        string = string.replaceAll("#059;", ";");
+        string = string.replaceAll("#061;", "=");
+        string = string.replaceAll("#063;", "?");
+
+        return string;
+    }
 }

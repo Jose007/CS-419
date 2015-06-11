@@ -224,6 +224,12 @@ if ($mysqli2->connect_errno) {
           </div>
         </div>
         <div class="form-group">
+          <label for="bus-name" class="col-sm-2 control-label">Hours</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="bus-hours" placeholder="Hours Open">
+          </div>
+        </div>
+        <div class="form-group">
           <label for="bus-info" class="col-sm-2 control-label">Info</label>
           <div class="col-sm-10">
             <textarea class="form-control" id="bus-info" rows="4"placeholder="Any extra information..."></textarea>

@@ -46,7 +46,7 @@ else {
         $bus_id = $_GET['id'];
 
         //Prepare a statement
-        if(!($stmt = $mysqli->prepare("SELECT name, info, phone, website, street, city, st, zip FROM companies WHERE id=?"))){
+        if(!($stmt = $mysqli->prepare("SELECT name, info, phone, website, street, city, st, zip, hours FROM companies WHERE id=?"))){
             echo "<p>Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
         }           
 
@@ -69,7 +69,8 @@ else {
         $city;
         $state;
         $zip;
-        if(!($stmt->bind_result($name, $info, $phone, $website, $street, $city, $state, $zip))){
+        $hours;
+        if(!($stmt->bind_result($name, $info, $phone, $website, $street, $city, $state, $zip, $hours))){
             echo "<p>Binding output parameters failed: (" . $stmt->errno . ") " . $stmt->error;
         }
 
@@ -211,6 +212,13 @@ else {
             </div> 
             <div class="col-sm-10 view-bus-data" id="result-username-update">
               <p><?php echo $website;?></p>
+            </div>
+
+            <div class="col-sm-2">
+              <p style="float: right;"><strong>Hours</strong></p>
+            </div> 
+            <div class="col-sm-10 view-bus-data" id="result-username-update">
+              <p><?php echo $hours;?></p>
             </div>
 
             <div class="col-sm-2">

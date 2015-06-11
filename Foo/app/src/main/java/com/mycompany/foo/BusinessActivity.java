@@ -82,18 +82,12 @@ public class BusinessActivity extends ListActivity {
                     else if(reuse.equals("1") && repair.equals("0")){
                         business.put("repair-reuse", "Reuse");
                     }
-                    else if(reuse.equals("1") && repair.equals("0")){
+                    else if(reuse.equals("0") && repair.equals("1")){
                         business.put("repair-reuse", "Repair");
                     }
                     else if(reuse.equals("0") && repair.equals("0")){
                         business.put("repair-reuse", "");
                     }
-
-
-
-
-                    business.put("reuse", reuse);
-                    business.put("repair", repair);
 
                     // adding art to artwork list
                     businessesList.add(business);
@@ -103,7 +97,7 @@ public class BusinessActivity extends ListActivity {
             }
         }
 
-        ListAdapter adapter = new SimpleAdapter(
+        final ListAdapter adapter = new SimpleAdapter(
                 BusinessActivity.this, businessesList,
                 R.layout.business_item, new String[] { "name", "address", "phone", "repair-reuse"},
                 new int[] { R.id.name, R.id.address,  R.id.phone, R.id.repair_reuse});
@@ -117,10 +111,27 @@ public class BusinessActivity extends ListActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Intent intent = new Intent(cntxt, IndividualBusinessActivity.class);
-                intent.putExtra(IND_BUSINESS_MESSAGE, message);
-                startActivity(intent);
 
+                    HashMap<String, String> listItem = (HashMap<String, String>) businessesList.get(position);
+                    String name = (String) listItem.get("name");
+                    String address = (String) listItem.get("address");
+                    String phone = (String) listItem.get("phone");
+                    String website = (String) listItem.get("website");
+                    String info = (String) listItem.get("info");
+                    String rr = (String) listItem.get("repair-reuse");
+
+                    StringBuilder businessbuild = new StringBuilder();
+                    String businessmessage = businessbuild.append("{\"name\":\"").append(name)
+                            .append("\",\"address\":\"").append(address)
+                            .append("\",\"phone\":\"").append(phone)
+                            .append("\",\"website\":\"").append(website)
+                            .append("\",\"info\":\"").append(info)
+                            .append("\",\"rr\":\"").append(rr)
+                            .append("\"}").toString();
+
+                Intent intent = new Intent(cntxt, IndividualBusinessActivity.class);
+                intent.putExtra(IND_BUSINESS_MESSAGE, businessmessage);
+                startActivity(intent);
             }
         });
     }

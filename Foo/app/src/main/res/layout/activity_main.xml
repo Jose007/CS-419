@@ -15,15 +15,11 @@
 
     <!-- help from http://www.techrepublic.com/article/pro-tip-round-corners-on-an-android-imageview-with-this-hack/-->
 
-    <ImageView
-        android:src="@drawable/frame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView" />
+
 
     <Button
-        android:layout_width="70pt"
-        android:layout_height="30pt"
+        android:layout_width="45pt"
+        android:layout_height="40pt"
         android:text="@string/link_message1"
         android:id="@+id/link_message1"
         android:layout_gravity="center"
@@ -32,18 +28,6 @@
         android:onClick="getPDF1"
         android:layout_alignParentBottom="true" />
 
-    <Button
-        android:layout_width="50pt"
-        android:layout_height="30pt"
-        android:text="@string/link_message2"
-        android:id="@+id/link_message2"
-        android:layout_gravity="center"
-        android:textColor="#FFFFFF"
-        android:background="#196C19"
-        android:onClick="getPDF2"
-        android:layout_alignTop="@+id/link_message1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
 
     <TextView
@@ -51,58 +35,26 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:gravity="center"/>
+            android:gravity="center"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_marginTop="15pt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true">
 
+
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="395dp"
+            android:layout_height="445dp"
             android:id="@+id/frameLayout">
 
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:padding="5dp"
-                android:src="@drawable/sustainablefeet"
-                android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@+id/link_message2"
-                android:layout_toStartOf="@+id/link_message2"
-                android:layout_gravity="center_horizontal|top" />
-
-            <ImageView
-                android:src="@drawable/frame"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal|top" />
-
-            <TextView
-                android:layout_width="311dp"
-                android:layout_height="89dp"
-                android:paddingTop="10dp"
-                android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/message"
-                android:background="#196C19"
-                android:id="@+id/message"
-                android:textSize="30sp"
-                android:textColor="#FFFFFF"
-                android:layout_toRightOf="@+id/textView1"
-                android:layout_alignRight="@+id/link_message2"
-                android:layout_alignEnd="@+id/link_message2"
-                android:layout_gravity="center" />
-
             <Button
-                android:layout_width="271dp"
+                android:layout_width="353dp"
                 android:layout_height="wrap_content"
                 android:text="@string/explore"
                 android:id="@+id/explore"
@@ -114,8 +66,77 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="73dp" />
+
+            <TextView
+                android:layout_width="301dp"
+                android:layout_height="104dp"
+                android:layout_marginTop="15pt"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/message"
+                android:background="#196C19"
+                android:id="@+id/message"
+                android:textSize="30sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:layout_toRightOf="@+id/textView1"
+                android:layout_alignRight="@+id/link_message2"
+                android:layout_alignEnd="@+id/link_message2"
+                android:layout_gravity="center" />
+
+            <FrameLayout
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="10pt"
+                android:layout_gravity="center_horizontal|top">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    android:src="@drawable/sustainablefeet"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@+id/link_message2"
+                    android:layout_toStartOf="@+id/link_message2"
+                    android:layout_gravity="center_horizontal|top" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/frame"
+                    android:id="@+id/imageView"
+                    android:layout_gravity="center_horizontal|top" />
+
+            </FrameLayout>
         </FrameLayout>
+
     </LinearLayout>
+
+        <Button
+        android:layout_width="45pt"
+        android:layout_height="40pt"
+        android:text="@string/link_message2"
+        android:id="@+id/link_message2"
+            android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="#FFFFFF"
+        android:background="#196C19"
+        android:onClick="getPDF2"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/link_message1" />
+
+        <Button
+        android:layout_width="45pt"
+        android:layout_height="40pt"
+        android:text="Republic Services"
+        android:id="@+id/button"
+
+        android:layout_gravity="bottom"
+        android:textColor="#FFFFFF"
+        android:background="#196C19"
+        android:onClick="getRepublicServices"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

@@ -148,6 +148,7 @@ function addBusiness() {
     var bus_phone = $('#bus-phone').val();
     var bus_website = $('#bus-website').val();
     var bus_info = $('#bus-info').val();
+    var bus_hours = $('#bus-hours').val();
 
     var items = [];
     var items_resell = [];
@@ -197,7 +198,8 @@ function addBusiness() {
             'info': bus_info,
             'items': items,
             'items-resell': items_resell,
-            'items-repair': items_repair
+            'items-repair': items_repair,
+            'hours': bus_hours
         }
     });
 
@@ -341,6 +343,7 @@ function editBusiness(id) {
     var bus_phone = $('#bus-phone').val();
     var bus_website = $('#bus-website').val();
     var bus_info = $('#bus-info').val();
+    var bus_hours = $('#bus-hours').val();
 
     var items = [];
     var items_resell = [];
@@ -391,7 +394,8 @@ function editBusiness(id) {
             'items': items,
             'items-resell': items_resell,
             'items-repair': items_repair,
-            'id': id
+            'id': id,
+            'hours': bus_hours
         }
     });
 
