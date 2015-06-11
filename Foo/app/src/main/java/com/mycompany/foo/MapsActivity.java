@@ -1,5 +1,6 @@
 package com.mycompany.foo;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v4.app.FragmentActivity;
@@ -14,13 +15,24 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MapsActivity extends FragmentActivity {
-
+    private BusinessActivity bs;
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private static final float DEFAULTZOOM = 15;
+    JSONArray businesses = null;
+    String message;
+
+    // Hashmap for ListView
+    ArrayList<HashMap<String, String>> busList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,7 +112,7 @@ public class MapsActivity extends FragmentActivity {
         double lat = add.getLatitude();
         double lng = add.getLongitude();
 
-        gotoLocation(lat,lng,DEFAULTZOOM);
+        gotoLocation(lat, lng, DEFAULTZOOM);
     }
 
     /**
@@ -109,11 +121,56 @@ public class MapsActivity extends FragmentActivity {
      * <p/>
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
-    private void setUpMap() throws IOException {
-        mMap.setMyLocationEnabled(true);
-        String location = "Corvallis, OR 97331";
 
-        getLocate(location);
+    public ArrayList<HashMap<String, String>> getAddresses( Intent intent){
+        intent = getIntent();
+        message = intent.getStringExtra(ItemsActivity.BUSINESS_MESSAGE);
+
+        busList = new ArrayList<HashMap<String, String>>();
+
+        if(message != null) {
+            try {
+
+                JSONObject jsonObj = new JSONObject(message);
+                // Getting JSON Array node
+                businesses = jsonObj.getJSONArray("businesses");
+
+                // looping through All categories
+                for (int i = 0; i < businesses.length(); i++) {
+                    JSONObject bus = businesses.getJSONObject(i);
+
+                    String name = bus.getString("name");
+                    String address = bus.getString("address");
+
+                    // tmp hashmap for single contact
+                    HashMap<String, String> business = new HashMap<String, String>();
+
+                    // adding each child node to HashMap key => value
+                    business.put("name", name);
+                    business.put("address", address);
+
+                    // adding art to artwork list
+                    busList.add(business);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return busList;
+    }
+
+
+    private void setUpMap() throws IOException {
+        ArrayList<String> address = new ArrayList<String>();
+        address.add("97734");
+        address.add("Corvallis, OR 97331");
+        address.add("Eugene, OR");
+        mMap.setMyLocationEnabled(true);
+        for(String s : address){
+            getLocate(s);
+
+        }
         //mMap.addMarker(new MarkerOptions().position(new LatLng(44.5646, 123.2757)).title("Marker"));
     }
 

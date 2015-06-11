@@ -16,6 +16,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -23,11 +27,8 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-
-
-
-
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 //help from http://stackoverflow.com/questions/2201917/how-can-i-open-a-url-in-androids-web-browser-from-my-application
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
      //   if (id == R.id.action_settings) {
     //        return true;
     //    }
+
         switch (item.getItemId()){
             case R.id.map:
                 Intent mapIntent = new Intent(this, MapsActivity.class);
@@ -72,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     //This function handles the action when a button is clicked
     //It checks for connection and then begins an AsyncTask in the background

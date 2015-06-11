@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -55,7 +56,7 @@ public class CategoriesActivity extends ListActivity {
 
         categoriesList = new ArrayList<HashMap<String, String>>();
 
-        if(message != null) {
+        if (message != null) {
             try {
 
                 JSONObject jsonObj = new JSONObject(message);
@@ -89,8 +90,8 @@ public class CategoriesActivity extends ListActivity {
 
         ListAdapter adapter = new SimpleAdapter(
                 CategoriesActivity.this, categoriesList,
-                R.layout.category_item, new String[] { "name", "category_url"},
-                new int[] { R.id.name, R.id.category_url});
+                R.layout.category_item, new String[]{"name", "category_url"},
+                new int[]{R.id.name, R.id.category_url});
 
         setListAdapter(adapter);
 
@@ -117,6 +118,37 @@ public class CategoriesActivity extends ListActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        // getMenuInflater().inflate(R.menu.menu_main, menu);
+        //return true;
+        MenuInflater mif = getMenuInflater();
+        mif.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        //  int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        //   if (id == R.id.action_settings) {
+        //        return true;
+        //    }
+        switch (item.getItemId()) {
+            case R.id.map:
+                Intent mapIntent = new Intent(this, MapsActivity.class);
+                startActivity(mapIntent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
     private class DownloadWebpageTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
@@ -128,6 +160,7 @@ public class CategoriesActivity extends ListActivity {
                 return "Unable to retrieve web page. URL may be invalid.";
             }
         }
+
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
@@ -178,26 +211,4 @@ public class CategoriesActivity extends ListActivity {
         return new String(buffer);
     }
 
-
-  //  @Override
- //   public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-  //      getMenuInflater().inflate(R.menu.menu_categories, menu);
-   //     return true;
-   // }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
