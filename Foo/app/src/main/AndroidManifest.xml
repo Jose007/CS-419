@@ -57,6 +57,14 @@
             android:name=".ItemsActivity"
             android:label="ItemsActivity" >
         </activity>
+        <activity
+            android:name=".BusinessActivity"
+            android:label="BusinessActivity" >
+        </activity>
+        <activity
+            android:name=".IndividualBusinessActivity"
+            android:label="IndividualBusinessActivity" >
+        </activity>
     </application>
 
 </manifest>

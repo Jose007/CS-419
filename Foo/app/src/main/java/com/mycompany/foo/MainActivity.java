@@ -24,6 +24,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+
+
+
+
+
+
 //help from http://stackoverflow.com/questions/2201917/how-can-i-open-a-url-in-androids-web-browser-from-my-application
 public class MainActivity extends AppCompatActivity {
 

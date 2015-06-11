@@ -1,4 +1,5 @@
 package com.mycompany.foo;
+
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -36,11 +37,10 @@ import java.util.HashMap;
  */
 //help from http://www.androidhive.info/2012/01/android-json-parsing-tutorial/
 public class ItemsActivity extends ListActivity {
-    public final static String ITEMS_MESSAGE = "com.mycompany.foo.ITEMS_MESSAGE";
+    public final static String BUSINESS_MESSAGE = "com.mycompany.foo.BUSINESS_MESSAGE";
     private static final String DEBUG_TAG = "HttpExample";
     Context cntxt = this;
     JSONArray items = null;
-    JSONObject itemInfo = null;
 
     // Hashmap for ListView
     ArrayList<HashMap<String, String>> itemsList;
@@ -48,7 +48,7 @@ public class ItemsActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_categories);//FIX THIS!
+        setContentView(R.layout.activity_items);
         // Get the message from the intent
         Intent intent = getIntent();
         String message = intent.getStringExtra(CategoriesActivity.ITEMS_MESSAGE);
@@ -73,16 +73,15 @@ public class ItemsActivity extends ListActivity {
 
 
                     // tmp hashmap for single contact
-                    HashMap<String, String> category = new HashMap<String, String>();
+                    HashMap<String, String> item = new HashMap<String, String>();
 
                     // adding each child node to HashMap key => value
-                    category.put("id", id);
-                    //art.put("artist", artist);
-                    category.put("name", name);
-                    category.put("item_url", item_url);
+                    item.put("id", id);
+                    item.put("name", name);
+                    item.put("item_url", item_url);
 
                     // adding art to artwork list
-                    itemsList.add(category);
+                    itemsList.add(item);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -133,8 +132,8 @@ public class ItemsActivity extends ListActivity {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            Intent intent = new Intent(cntxt, CategoriesActivity.class);
-            intent.putExtra(ITEMS_MESSAGE, result);
+            Intent intent = new Intent(cntxt, BusinessActivity.class);
+            intent.putExtra(BUSINESS_MESSAGE, result);
             startActivity(intent);
         }
     }

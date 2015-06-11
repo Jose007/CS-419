@@ -76,7 +76,6 @@ public class CategoriesActivity extends ListActivity {
 
                     // adding each child node to HashMap key => value
                     category.put("id", id);
-                    //art.put("artist", artist);
                     category.put("name", name);
                     category.put("category_url", category_url);
 

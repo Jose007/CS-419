@@ -3,7 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#5cb85c"
+    android:background="#196C19"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:weightSum="1">
     <!--android:gravity="center|center_vertical"
     tools:context="com.mycompany.foo.MainActivity"-->
@@ -11,78 +15,37 @@
 
     <!-- help from http://www.techrepublic.com/article/pro-tip-round-corners-on-an-android-imageview-with-this-hack/-->
 
-    <FrameLayout
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/frameLayout">
-
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:padding="5dp"
-            android:src="@drawable/sustainablefeet"/>
-
-        <ImageView
-            android:src="@drawable/frame"
-            android:layout_width="150dp"
-            android:layout_height="150dp" />
-
-    </FrameLayout>
-
-    <TextView
-        android:layout_width="308dp"
-        android:layout_height="96dp"
-        android:paddingLeft="15dp"
-        android:paddingTop="5dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/message"
-        android:background="#5cb85c"
-        android:id="@+id/message"
-        android:textSize="30sp"
-        android:textColor="#FFFFFF"
-        android:textAlignment="center"
-        android:layout_alignBottom="@+id/frameLayout"
-        android:layout_toRightOf="@+id/frameLayout"
-        android:layout_alignTop="@+id/frameLayout" />
-
     <ImageView
         android:src="@drawable/frame"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="70pt"
+        android:layout_height="30pt"
         android:text="@string/link_message1"
         android:id="@+id/link_message1"
         android:layout_gravity="center"
         android:textColor="#FFFFFF"
-        android:background="#5cb85c"
+        android:background="#196C19"
         android:onClick="getPDF1"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/message"
-        android:layout_toStartOf="@+id/message" />
+        android:layout_alignLeft="@+id/resellbuy"
+        android:layout_alignStart="@+id/resellbuy"
+        android:layout_alignParentBottom="true" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="50pt"
+        android:layout_height="30pt"
         android:text="@string/link_message2"
         android:id="@+id/link_message2"
         android:layout_gravity="center"
         android:textColor="#FFFFFF"
-        android:background="#5cb85c"
+        android:background="#196C19"
         android:onClick="getPDF2"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/resellbuy"
-        android:layout_toEndOf="@+id/resellbuy" />
+        android:layout_alignTop="@+id/link_message1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_marginTop="10dp"
@@ -92,11 +55,13 @@
         android:id="@+id/resellbuy"
         android:layout_gravity="center"
         android:textColor="#FFFFFF"
-        android:background="#41a041"
+        android:background="@drawable/button"
         android:onClick="getCategoriesHandler"
         android:layout_below="@+id/repair"
         android:layout_alignLeft="@+id/repair"
-        android:layout_alignStart="@+id/repair" />
+        android:layout_alignStart="@+id/repair"
+        android:layout_alignRight="@+id/link_message2"
+        android:layout_alignEnd="@+id/link_message2" />
 
     <Button
         android:layout_marginTop="10dp"
@@ -106,11 +71,13 @@
         android:id="@+id/repair"
         android:layout_gravity="center"
         android:textColor="#FFFFFF"
-        android:background="#41a041"
+        android:background="@drawable/button"
         android:onClick="getCategoriesHandler"
         android:layout_below="@+id/explore"
         android:layout_alignLeft="@+id/explore"
-        android:layout_alignStart="@+id/explore" />
+        android:layout_alignStart="@+id/explore"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -119,10 +86,67 @@
         android:id="@+id/explore"
         android:layout_gravity="center"
         android:textColor="#FFFFFF"
-        android:background="#41a041"
+        android:background="@drawable/button"
         android:onClick="getCategoriesHandler"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10pt"
+        android:gravity="center" >
+
+        <FrameLayout
+            android:layout_gravity="center_horizontal|top"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/frameLayout">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+
+                android:layout_gravity="center_horizontal|top"
+                android:padding="5dp"
+                android:src="@drawable/sustainablefeet"/>
+
+            <ImageView
+                android:src="@drawable/frame"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal|top" />
+
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:paddingTop="5dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/message"
+            android:background="#196C19"
+            android:id="@+id/message"
+            android:textSize="30sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginLeft="5pt"
+            android:layout_alignBottom="@+id/frameLayout"
+            android:layout_toRightOf="@+id/frameLayout"
+            android:layout_alignTop="@+id/frameLayout" />
+
+    </LinearLayout>
+
 
 
 </RelativeLayout>
