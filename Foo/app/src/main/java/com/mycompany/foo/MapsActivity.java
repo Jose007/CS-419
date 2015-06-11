@@ -139,20 +139,20 @@ public class MapsActivity extends FragmentActivity {
 
                 JSONObject jsonObj = new JSONObject(addresssesJSON);
                 // Getting JSON Array node
-                addresses = jsonObj.getJSONArray("categories");
+                addresses = jsonObj.getJSONArray("addresses");
 
                 // looping through All categories
                 for (int i = 0; i < addresses.length(); i++) {
                     JSONObject addr = addresses.getJSONObject(i);
 
-                    String id = addr.getString("id");
+                    String address = addr.getString("address");
                     String name = addr.getString("name");
 
                     // tmp hashmap for single contact
                     HashMap<String, String> addressMap = new HashMap<String, String>();
 
                     // adding each child node to HashMap key => value
-                    addressMap.put("id", id);
+                    addressMap.put("address", address);
                     addressMap.put("name", name);
 
                     // adding art to artwork list
@@ -180,7 +180,7 @@ public class MapsActivity extends FragmentActivity {
             }
         }else{
                 mMap.setMyLocationEnabled(true);
-                getLocate("97734");
+                getLocate("97333");
         }
 
 
