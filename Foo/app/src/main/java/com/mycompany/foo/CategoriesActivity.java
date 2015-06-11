@@ -139,11 +139,11 @@ public class CategoriesActivity extends ListActivity {
         //   if (id == R.id.action_settings) {
         //        return true;
         //    }
-        switch (item.getItemId()) {
+        switch (item.getItemId()){
             case R.id.map:
                 Intent mapIntent = new Intent(this, MapsActivity.class);
                 startActivity(mapIntent);
-                return true;
+                return  true;
         }
         return super.onOptionsItemSelected(item);
     }
