@@ -28,6 +28,7 @@ public class IndividualBusinessActivity extends Activity {
     TextView rrtxt;
     String website;
     public final static String EXTRA_MESSAGE = "com.mycompany.foo.MESSAGE";
+    public final static String EXTRA_MESSAGE_TWO = "com.mycompany.foo.MESSAGE";
 
     Context cntxt = this;
     JSONArray businesses = null;
@@ -88,9 +89,14 @@ public class IndividualBusinessActivity extends Activity {
     public void sendMessage(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, MapsActivity.class);
+        Bundle extras = new Bundle();
         TextView editText = (TextView) findViewById(R.id.textView7);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
+        TextView txt = (TextView) findViewById(R.id.textView);
+        String addr = editText.getText().toString();
+        String name = txt.getText().toString();
+        extras.putString("street", addr);
+        extras.putString("company",name);
+        intent.putExtras(extras);
         startActivity(intent);
     }
 }

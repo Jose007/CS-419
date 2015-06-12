@@ -99,17 +99,16 @@ public class MapsActivity extends FragmentActivity {
      */
 
 
-    public void gotoLocation(double lat,double lng,float zoom){
+    public void gotoLocation(double lat,double lng,String name,float zoom){
         LatLng ll = new LatLng(lat,lng);
-
         Marker marker = mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(lat, lng))
-                .title("This is a test"));
+                .title(name));
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll,zoom);
         mMap.moveCamera(update);
 
     }
-    public void getLocate(String location) throws IOException {
+    public void getLocate(String name,String location) throws IOException {
 
         Geocoder gc = new Geocoder(this);
 
@@ -120,7 +119,7 @@ public class MapsActivity extends FragmentActivity {
         double lat = add.getLatitude();
         double lng = add.getLongitude();
 
-        gotoLocation(lat, lng, DEFAULTZOOM);
+        gotoLocation(lat, lng,name,DEFAULTZOOM);
     }
 
     /**
@@ -168,14 +167,16 @@ public class MapsActivity extends FragmentActivity {
 
 
     private void setUpMap() throws IOException {
-        ArrayList<HashMap<String, String>> address ;
-        String value;
+       // ArrayList<HashMap<String, String>> address ;
+      //  String value;
         Intent intent = getIntent();
-        String message = intent.getStringExtra(IndividualBusinessActivity.EXTRA_MESSAGE);
-        if(message.length()>0){
-            getLocate(message);
+        String addr = intent.getExtras().getString("street");
+        String name = intent.getExtras().getString("company");
+        mMap.setMyLocationEnabled(true);
+        if(addr.length()>0){
+            getLocate(name,addr);
         }else{
-            getLocate("97734");
+            getLocate("Failed","97734");
         }
 
 /*       address = getAddresses();
