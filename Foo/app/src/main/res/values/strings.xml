@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Corvallis Reuse and Repair Directory</string>
     <string name="title_activity_maps">Map</string>
-    <string name="title_activity_main">CRRD</string>
+    <string name="title_activity_main">Corvallis Reuse and Repair Directory</string>
     <string name="message"> Corvallis Reuse and Repair Directory</string>
     <string name="action_settings">Settings</string>
     <string name="repair">Repair</string>

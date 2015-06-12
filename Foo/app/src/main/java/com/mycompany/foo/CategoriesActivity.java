@@ -16,13 +16,12 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -67,7 +66,6 @@ public class CategoriesActivity extends ListActivity {
                 for (int i = 0; i < categories.length(); i++) {
                     JSONObject cat = categories.getJSONObject(i);
 
-                    String id = cat.getString("id");
                     String name = cat.getString("name");
                     String category_url = cat.getString("category_url");
 
@@ -76,7 +74,6 @@ public class CategoriesActivity extends ListActivity {
                     HashMap<String, String> category = new HashMap<String, String>();
 
                     // adding each child node to HashMap key => value
-                    category.put("id", id);
                     category.put("name", name);
                     category.put("category_url", category_url);
 
@@ -118,35 +115,6 @@ public class CategoriesActivity extends ListActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        // getMenuInflater().inflate(R.menu.menu_main, menu);
-        //return true;
-        MenuInflater mif = getMenuInflater();
-        mif.inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        //  int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        //   if (id == R.id.action_settings) {
-        //        return true;
-        //    }
-        switch (item.getItemId()){
-            case R.id.map:
-                Intent mapIntent = new Intent(this, MapsActivity.class);
-                startActivity(mapIntent);
-                return  true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
 
     private class DownloadWebpageTask extends AsyncTask<String, Void, String> {
@@ -205,11 +173,16 @@ public class CategoriesActivity extends ListActivity {
 
     // Reads an InputStream and converts it to a String.
     public String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
-        Reader reader = null;
-        reader = new InputStreamReader(stream, "UTF-8");
-        char[] buffer = new char[len];
-        reader.read(buffer);
-        return new String(buffer);
+        // adapted from help at stackOverflow, http://stackoverflow.com/questions/309424/read-convert-an-inputstream-to-a-string
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        StringBuilder out = new StringBuilder();
+        String newLine = System.getProperty("line.separator");
+        String line;
+        while ((line = reader.readLine()) != null) {
+            out.append(line);
+            out.append(newLine);
+        }
+        return out.toString();
     }
 
     public String specialCharCheck(String string){

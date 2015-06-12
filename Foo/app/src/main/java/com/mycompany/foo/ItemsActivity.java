@@ -8,7 +8,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -59,8 +59,7 @@ public class ItemsActivity extends ListActivity {
             try {
 
                 JSONObject jsonObj = new JSONObject(message);
-                // Getting JSON Array node
-                //itemInfo = jsonObj.getJSONObject("items");
+
                 items = jsonObj.getJSONArray("items");
 
                 // looping through All categories
@@ -173,27 +172,18 @@ public class ItemsActivity extends ListActivity {
 
     // Reads an InputStream and converts it to a String.
     public String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
-        Reader reader = null;
-        reader = new InputStreamReader(stream, "UTF-8");
-        char[] buffer = new char[len];
-        reader.read(buffer);
-        return new String(buffer);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        // adapted from help at stackOverflow, http://stackoverflow.com/questions/309424/read-convert-an-inputstream-to-a-string
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        StringBuilder out = new StringBuilder();
+        String newLine = System.getProperty("line.separator");
+        String line;
+        while ((line = reader.readLine()) != null) {
+            out.append(line);
+            out.append(newLine);
         }
-
-        return super.onOptionsItemSelected(item);
+        return out.toString();
     }
+
 
     public String specialCharCheck(String string){
         string = string.replaceAll("&#039;", "'");

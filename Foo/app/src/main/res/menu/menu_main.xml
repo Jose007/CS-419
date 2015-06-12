@@ -1,13 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context="com.mycompany.foo.MainActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
 
-    <item
-        android:id="@+id/map"
-        android:icon="@drawable/ic_action_map"
-        android:title="@string/map_icon"
-        app:showAsAction="always"
-        />
 </menu>

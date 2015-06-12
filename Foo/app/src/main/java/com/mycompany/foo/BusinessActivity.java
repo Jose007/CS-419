@@ -3,16 +3,12 @@ package com.mycompany.foo;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,8 +45,7 @@ public class BusinessActivity extends ListActivity {
             try {
 
                 JSONObject jsonObj = new JSONObject(message);
-                // Getting JSON Array node
-                //itemInfo = jsonObj.getJSONObject("items");
+
                 businesses = jsonObj.getJSONArray("businesses");
 
                 // looping through All categories
@@ -58,11 +53,11 @@ public class BusinessActivity extends ListActivity {
                     JSONObject bus = businesses.getJSONObject(i);
                     JSONObject app = bus.getJSONObject("application");
 
-                    String id = bus.getString("id");
                     String name = bus.getString("name");
                     String address = bus.getString("address");
                     String phone = bus.getString("phone");
                     String website = bus.getString("website");
+                    String hours = bus.getString("hours");
                     String info = bus.getString("info");
                     String reuse = app.getString("reuse");
                     String repair = app.getString("repair");
@@ -71,10 +66,10 @@ public class BusinessActivity extends ListActivity {
                     HashMap<String, String> business = new HashMap<String, String>();
 
                     // adding each child node to HashMap key => value
-                    business.put("id", id);
                     business.put("name", name);
                     business.put("address", address);
                     business.put("phone", phone);
+                    business.put("hours", hours);
                     business.put("website", website);
                     business.put("info", info);
 
@@ -114,22 +109,24 @@ public class BusinessActivity extends ListActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                    HashMap<String, String> listItem = (HashMap<String, String>) businessesList.get(position);
-                    String name = (String) listItem.get("name");
-                    String address = (String) listItem.get("address");
-                    String phone = (String) listItem.get("phone");
-                    String website = (String) listItem.get("website");
-                    String info = (String) listItem.get("info");
-                    String rr = (String) listItem.get("repair-reuse");
+                HashMap<String, String> listItem = (HashMap<String, String>) businessesList.get(position);
+                String name = (String) listItem.get("name");
+                String address = (String) listItem.get("address");
+                String phone = (String) listItem.get("phone");
+                String hours = (String) listItem.get("hours");
+                String website = (String) listItem.get("website");
+                String info = (String) listItem.get("info");
+                String rr = (String) listItem.get("repair-reuse");
 
-                    StringBuilder businessbuild = new StringBuilder();
-                    String businessmessage = businessbuild.append("{\"name\":\"").append(name)
-                            .append("\",\"address\":\"").append(address)
-                            .append("\",\"phone\":\"").append(phone)
-                            .append("\",\"website\":\"").append(website)
-                            .append("\",\"info\":\"").append(info)
-                            .append("\",\"rr\":\"").append(rr)
-                            .append("\"}").toString();
+                StringBuilder businessbuild = new StringBuilder();
+                String businessmessage = businessbuild.append("{\"name\":\"").append(name)
+                        .append("\",\"address\":\"").append(address)
+                        .append("\",\"phone\":\"").append(phone)
+                        .append("\",\"hours\":\"").append(hours)
+                        .append("\",\"website\":\"").append(website)
+                        .append("\",\"info\":\"").append(info)
+                        .append("\",\"rr\":\"").append(rr)
+                        .append("\"}").toString();
 
                 Intent intent = new Intent(cntxt, IndividualBusinessActivity.class);
                 intent.putExtra(IND_BUSINESS_MESSAGE, businessmessage);

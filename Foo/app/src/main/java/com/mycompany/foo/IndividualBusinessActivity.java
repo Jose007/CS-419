@@ -12,8 +12,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Mollie on 6/9/2015.
@@ -29,8 +27,6 @@ public class IndividualBusinessActivity extends Activity {
     String website;
     public final static String EXTRA_MESSAGE = "com.mycompany.foo.MESSAGE";
 
-    Context cntxt = this;
-    JSONArray businesses = null;
     String message;
 
 
@@ -52,7 +48,7 @@ public class IndividualBusinessActivity extends Activity {
                 String name = jsonObj.getString("name");
                 String address = jsonObj.getString("address");
                 String phone = jsonObj.getString("phone");
-               // String hours = jsonObj.getString("hours");
+                String hours = jsonObj.getString("hours");
                 website = jsonObj.getString("website");
                 String info = jsonObj.getString("info");
                 String rr = jsonObj.getString("rr");
@@ -68,7 +64,7 @@ public class IndividualBusinessActivity extends Activity {
                 nametxt.setText(name);
                 addresstxt.setText(address);
                 phonetxt.setText(phone);
-                //hourstxt.setText(hours);
+                hourstxt.setText(hours);
                 websitetxt.setText(website);
                 infotxt.setText(info);
                 rrtxt.setText(rr);

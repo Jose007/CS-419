@@ -7,7 +7,6 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -25,7 +24,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 public class MapsActivity extends FragmentActivity {
     private BusinessActivity bs;
@@ -178,19 +177,6 @@ public class MapsActivity extends FragmentActivity {
             getLocate("97734");
         }
 
-/*       address = getAddresses();
-
-        if (address.size()>0){
-            mMap.setMyLocationEnabled(true);
-            for(int i = 0;i< address.size()-75; i++) {
-                value = address.get(i).get("address");
-                getLocate(value);
-            }
-        }else{
-                mMap.setMyLocationEnabled(true);
-                getLocate("97333");
-        }
-*/
 
     }
         //mMap.addMarker(new MarkerOptions().position(new LatLng(44.5646, 123.2757)).title("Marker"));
